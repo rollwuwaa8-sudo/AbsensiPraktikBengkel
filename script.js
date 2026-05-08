@@ -1,14 +1,13 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzVqrq0F-DMaqbrGKVz1V2Gx7tCr0KtIFm4N7NHiXAz_YE2dxrPbCI2S1ujL2Rv4J5X1A/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzk8ZJ1zE3F5s_CNt6WPGQvpNSIkoCHwnmCeBv5I2Qs4fnUIrld5FUkZbpPR-JAqHDagw/exec';
 const form = document.getElementById('absensiForm');
 const btn = document.getElementById('btnKirim');
 const pesan = document.getElementById('pesan');
 const isiTabel = document.getElementById('isiTabel');
 const rekapanContainer = document.getElementById('rekapanContainer');
 
-// Set tanggal hari ini secara otomatis[cite: 1, 2]
+// Set tanggal otomatis ke hari ini
 document.getElementById('tanggal').valueAsDate = new Date();
 
-// Fungsi mengambil data terbaru dari Google Sheets
 function muatRekapan() {
     fetch(scriptURL)
         .then(res => res.json())
@@ -16,8 +15,17 @@ function muatRekapan() {
             isiTabel.innerHTML = ""; 
             data.forEach(row => {
                 const tr = document.createElement('tr');
-                // row[0] adalah Nama, row[2] adalah Status[cite: 1, 2]
-                tr.innerHTML = `<td>${row[0]}</td><td>${row[2]}</td>`;
+                
+                // Format tanggal dari row[1] (Kolom B di Sheet)
+                // Jika row[1] adalah objek Date dari Apps Script
+                let tglObj = new Date(row[1]);
+                let tglFormat = isNaN(tglObj) ? row[1] : tglObj.toLocaleDateString('id-ID', {day:'2-digit', month:'2-digit'});
+
+                tr.innerHTML = `
+                    <td>${tglFormat}</td>
+                    <td>${row[0]}</td>
+                    <td>${row[2]}</td>
+                `;
                 isiTabel.appendChild(tr);
             });
             rekapanContainer.style.display = "block";
@@ -25,14 +33,14 @@ function muatRekapan() {
         .catch(err => console.error("Gagal memuat data", err));
 }
 
-// Muat data saat halaman dibuka
+// Muat data saat aplikasi pertama kali dibuka
 muatRekapan();
 
 form.addEventListener('submit', e => {
     e.preventDefault();
     btn.disabled = true;
     pesan.textContent = "Sedang mengirim...";
-    pesan.style.color = "black";
+    pesan.style.color = "gray";
 
     const payload = {
         nama: document.getElementById('nama').value,
@@ -49,10 +57,10 @@ form.addEventListener('submit', e => {
         pesan.style.color = "green";
         form.reset();
         document.getElementById('tanggal').valueAsDate = new Date();
-        muatRekapan(); // Perbarui tabel setelah absen[cite: 1, 2]
+        muatRekapan(); // Refresh tabel setelah kirim
     })
     .catch(err => {
-        pesan.textContent = "Gagal. Pastikan URL Script benar.";
+        pesan.textContent = "Gagal Mengirim Data.";
         pesan.style.color = "red";
     })
     .finally(() => { btn.disabled = false; });
