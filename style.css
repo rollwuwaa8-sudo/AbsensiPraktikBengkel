@@ -10,19 +10,19 @@ body {
 }
 .card { 
     background: white; 
-    padding: 2rem; 
+    padding: 1.5rem; 
     border-radius: 12px; 
     box-shadow: 0 8px 24px rgba(0,0,0,0.1); 
-    width: 100%; 
+    width: 95%; 
     max-width: 400px; 
 }
-h2 { text-align: center; color: #1a73e8; }
 input, select, button { 
     width: 100%; 
     padding: 12px; 
     margin: 8px 0; 
     border: 1px solid #ccc; 
     border-radius: 8px; 
+    font-size: 14px;
 }
 button { 
     background: #1a73e8; 
@@ -31,17 +31,19 @@ button {
     font-weight: bold; 
     cursor: pointer; 
 }
-button:disabled { background: #ccc; }
-#pesan { text-align: center; font-size: 0.9rem; margin-top: 10px; }
+button:hover { background: #1557b0; }
+#pesan { text-align: center; font-size: 0.85rem; margin: 10px 0; font-weight: bold; }
 
-/* Style Tabel Rekapan[cite: 1, 2] */
-#rekapanContainer { margin-top: 20px; }
-h3 { font-size: 1rem; color: #555; }
+/* Tabel Rekapan */
 table { width: 100%; border-collapse: collapse; margin-top: 10px; }
 th, td { 
     text-align: left; 
-    padding: 8px; 
+    padding: 8px 4px; 
     border-bottom: 1px solid #eee; 
-    font-size: 0.85rem; 
+    font-size: 0.8rem; 
 }
-th { color: #888; font-weight: 600; }
+th { color: #888; }
+/* Kolom Tanggal (Tgl) dibuat lebih ringkas */
+th:nth-child(1), td:nth-child(1) { width: 45px; color: #999; }
+/* Kolom Status */
+th:nth-child(3), td:nth-child(3) { width: 60px; }
