@@ -1,7 +1,7 @@
 * { box-sizing: border-box; }
 body { 
     font-family: 'Segoe UI', sans-serif; 
-    background: #f0f2f5; 
+    background: #eef2f3; 
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -12,18 +12,17 @@ body {
     background: white; 
     padding: 2rem; 
     border-radius: 12px; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-    width: 90%; 
-    max-width: 380px; 
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1); 
+    width: 100%; 
+    max-width: 400px; 
 }
-h2 { text-align: center; color: #1a73e8; margin-bottom: 1.5rem; }
+h2 { text-align: center; color: #1a73e8; }
 input, select, button { 
     width: 100%; 
     padding: 12px; 
     margin: 8px 0; 
-    border: 1px solid #ddd; 
+    border: 1px solid #ccc; 
     border-radius: 8px; 
-    font-size: 1rem; 
 }
 button { 
     background: #1a73e8; 
@@ -31,7 +30,18 @@ button {
     border: none; 
     font-weight: bold; 
     cursor: pointer; 
-    margin-top: 1rem;
 }
-button:hover { background: #1557b0; }
-#pesan { text-align: center; font-weight: bold; margin-top: 10px; }
+button:disabled { background: #ccc; }
+#pesan { text-align: center; font-size: 0.9rem; margin-top: 10px; }
+
+/* Style Tabel Rekapan[cite: 1, 2] */
+#rekapanContainer { margin-top: 20px; }
+h3 { font-size: 1rem; color: #555; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th, td { 
+    text-align: left; 
+    padding: 8px; 
+    border-bottom: 1px solid #eee; 
+    font-size: 0.85rem; 
+}
+th { color: #888; font-weight: 600; }
