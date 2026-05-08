@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Absensi Praktik</title>
+    <title>Absensi Praktik Bengkel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="card">
-        <h2>Absensi Bengkel</h2>
+        <h2>Presensi Praktik</h2>
+        <!-- Form Input -->
         <form id="absensiForm">
             <input type="text" id="nama" placeholder="Nama Lengkap Siswa" required>
             <input type="date" id="tanggal" required>
@@ -20,6 +21,21 @@
             <button type="submit" id="btnKirim">Kirim Presensi</button>
         </form>
         <p id="pesan"></p>
+
+        <!-- Bagian Rekapan Data[cite: 1, 2] -->
+        <div id="rekapanContainer" style="display:none;">
+            <hr>
+            <h3>10 Presensi Terakhir</h3>
+            <table id="tabelRekapan">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="isiTabel"></tbody>
+            </table>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
